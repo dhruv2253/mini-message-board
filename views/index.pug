@@ -3,9 +3,9 @@ extends layout
 
 block content
   h1 Message List
-  ul
+  block message
     each message in messages
-      li= message.text
-      li= message.user
-      li= message.added
+      h3= message.user
+      p= message.text
+      p= message.added
   a(href="/new") New Message
