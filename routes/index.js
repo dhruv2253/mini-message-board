@@ -7,7 +7,8 @@ const messages = [
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+  const messages = await Message.find()
   res.render('index', { title: "Mini Messageboard", messages: messages })
 });
 
@@ -15,7 +16,7 @@ router.get('/new', (req, res) => {
   res.render('form')
 })
 
-router.post('/new', (req, res) => {
+router.post('/new', async (req, res) => {
   
   const newMessage = {
     text: req.body.messageText,
@@ -23,7 +24,7 @@ router.post('/new', (req, res) => {
     added: new Date()
   }
   messages.push(newMessage)
-  new Message(newMessage).save()
+  await new Message(newMessage).save()
   console.log("Posted")
   res.redirect('/')
 })
