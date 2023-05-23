@@ -1,3 +1,5 @@
+require('dotenv').config()
+console.log(process.env)
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,7 +12,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
-const mongoDB = 'mongodb+srv://dhruv225:DhruvNeel@mini-message-board.fdnmgoq.mongodb.net/messages?retryWrites=true&w=majority'
+const mongoDB = process.env.SECRET_KEY;
 
 main().catch((err) => console.log(err));
 
