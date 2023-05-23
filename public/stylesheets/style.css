@@ -7,6 +7,9 @@ a {
   color: #00B7FF;
 }
 
+* {
+  background-color: antiquewhite;
+}
 
 @media only screen
   and (device-width: 375px)
@@ -17,6 +20,7 @@ a {
     font-size: 16px;
     padding: 10px;
   }
+
   
   .container {
     width: 90%;
