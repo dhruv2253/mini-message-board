@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
+const Message = require('../models/message')
 const messages = [
   
 ];
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,9 +16,18 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/new', (req, res) => {
-  messages.push({text: req.body.messageText, user: req.body.name, added: new Date()})
+  
+  const newMessage = {
+    text: req.body.messageText,
+    user: req.body.name,
+    added: new Date()
+  }
+  messages.push(newMessage)
+  new Message(newMessage).save()
+  console.log("Posted")
   res.redirect('/')
 })
+
 
 
 module.exports = router;
